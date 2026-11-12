@@ -1,0 +1,506 @@
+<!doctype html>
+<html data-vapor-wasm="/_vapor/vapor.648073c312.wasm" data-vapor-browser="/_vapor/browser.4c4c45d709.js" lang="en">
+
+<head>
+  <title>ryven: a Postgres dashboard you run yourself</title>
+  <meta charset="utf-8" />
+  <meta name="description"
+    content="ryven is a dashboard for your Postgres that you run yourself: one binary, pointed at your database, in your browser. Live charts, every table, SQL with EXPLAIN ANALYZE, and the crashes your vapor app reports." />
+  <meta property="og:title" content="ryven: a Postgres dashboard you run yourself" />
+  <meta property="og:description"
+    content="One binary, pointed at your database, in your browser. Live charts, every table, SQL with EXPLAIN ANALYZE." />
+  <meta property="og:image" content="https://ryven.kyber.run/assets/shots/overview-dark.webp" />
+  <meta property="og:url" content="https://ryven.kyber.run" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/_vapor/vapor.648073c312.wasm" as="fetch" type="application/wasm" crossorigin />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap" rel="stylesheet" media="print"
+    onload="this.media = 'all'" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+
+  <script type="module" src="/_vapor/bundle.7cd4537fbf.js"></script>
+  <!-- Bootstrap Icons 1.13.1, served with the app so it works offline. -->
+  <link rel="stylesheet" href="/assets/css/bootstrap-icons.css" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Barlow", sans-serif;
+      font-optical-sizing: auto;
+      height: 100dvh;
+      width: 100%;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      background-color: rgba(var(--background));
+      color: rgb(var(--text_color));
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE/Edge */
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-scrollbar: display: none;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      /* Chrome, Safari, Opera */
+      margin: 0;
+    }
+
+    ::view-transition-group(*) {
+      animation-duration: 150ms;
+    }
+
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      /* animation: none; */
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    textarea {
+      line-height: 1.5;
+      font-size-adjust: 0.5;
+    }
+
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    /* The ring a control shows while it has keyboard focus: on Tab, not
+       on a mouse click. */
+    :focus-visible {
+      outline: 2px solid rgb(var(--text_color));
+      outline-offset: 2px;
+    }
+
+    button, p, input {
+      font-family: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      /* font-size: inherit; */
+      /* line-height: inherit; */
+      color: inherit;
+      /* min-width: 0; */
+      /* box-sizing: border-box; */
+      /* display: flex; */
+      /* add these: */
+      /* padding: 0; */
+      /* border: none; */
+      /* background: none; */
+      /* text-align: inherit; */
+      /* appearance: none; */
+    }
+
+
+
+    input[type="file"]::file-selector-button {
+      background: transparent;
+      color: transparent;
+      border: none;
+    }
+
+
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px transparent inset;
+      -webkit-text-fill-color: inherit;
+      caret-color: inherit;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    .reload-indicator {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 6px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      z-index: 99999;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .reload-indicator.visible {
+      display: flex;
+    }
+
+    .reload-spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid #333;
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* The site's feature rows that put their screenshot on the left; doubled
+       to outrank the element's own class. A phone stacks them all alike. */
+    [data-flip="true"][data-flip="true"] {
+      flex-direction: row-reverse;
+    }
+
+    /* A feature's text keeps level with the top of its screenshot, and in
+       view while a tall one scrolls past. */
+    [data-beside="true"] {
+      flex: 1 1 340px;
+      min-width: 0;
+      position: sticky;
+      top: 48px;
+      align-self: flex-start;
+    }
+
+    /* A feature's screenshots: the larger share of its row. */
+    [data-shots="true"] {
+      flex: 2 1 560px;
+      min-width: 0;
+    }
+
+    @media (max-width: 767px) {
+      [data-flip="true"][data-flip="true"] {
+        flex-direction: column;
+      }
+
+      /* Stacked, a basis would be a height. */
+      [data-beside="true"],
+      [data-shots="true"] {
+        flex: none;
+        width: 100%;
+        position: static;
+        align-self: stretch;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="/_vapor/style.e0f0c8cfaa.css" />
+  <link rel="stylesheet" href="/_vapor/style_variables.4edb21f149.css" /></head>
+
+<body>
+  <main id="contents" style="display: contents"><div  id="Flex_OIm3f-gk" data-vp="" class="lay_FcuM62 pos_e8wtf3 mapa_CrkEb2 vis_NDoit2 ">
+<div  id="Flex_zqROb2-gk" data-vp="" class="resp_5Akzj1 lay_1wHVY1 pos_e8wtf3 mapa_kNJK91 vis_KFwhE4 ">
+<a  id="Link_tAFOP3-gk" data-vp="" class="lay_ERyub4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " href="/">
+<img  id="Imag_5n7b21-gk" data-vp="" class="lay_wsiGk pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " src="/assets/ryven_logo.svg"alt="">
+</img>
+<p  id="Text_IiziA4-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_5YtRB1 ">ryven</p>
+</a>
+<div  id="Flex_ux4xS1-gk" data-vp="" class="lay_TKjdt pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<a  id="Link_HIdBq3-gk" data-vp="" class="resp_lVdMI4 lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " href="#features">
+<p  id="Text_5f28n-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_pmBfp2 ">Features</p>
+</a>
+<a  id="Link_rXbHZ1-gk" data-vp="" class="resp_lVdMI4 lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " href="#safe">
+<p  id="Text_TBW3Y2-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_pmBfp2 ">Security</p>
+</a>
+<a  id="Link_WWVUu2-gk" data-vp="" class="resp_lVdMI4 lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " href="#install">
+<p  id="Text_JsqCe2-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_pmBfp2 ">Install</p>
+</a>
+<a  id="Redi_xOsPd-gk" data-vp="" class="lay_OG6Dc2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " href="https://github.com/vic-Rokx/ryven">
+<i  id="Icon_DORSZ1-gk" data-vp="" class="bi bi-github lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_Y1akP1 ">
+</i>
+</a>
+</div>
+</div>
+<div  id="Flex_4IigU-gk" data-vp="" class="resp_kHsb34 lay_PqEkO3 pos_e8wtf3 mapa_mPW5m2 vis_SG5ZU3 ">
+<div  id="Flex_qxY1K2-gk" data-vp="" style="max-width: 1200px;" class="lay_WYY1V3 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<p  id="Text_Xuz703-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Postgres, in your browser · v0.1.1</p>
+<h1  id="Head_T2VQ64-gk" data-vp="" style="font-size: clamp(34px, 7vw, 64px); line-height: 1.08; text-align: center; margin: 0; max-width: 900px;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_02v0T ">A dashboard for your Postgres that you run yourself
+</h1>
+<p  id="Text_ahi7v1-gk" data-vp="" style="line-height: 1.6; text-align: center; max-width: 720px;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_Q0zi51 ">One binary, pointed at your database, in your browser. Live charts of the last hour, every table and row, SQL with EXPLAIN ANALYZE, and the crashes your apps report. Your data stays where it is.</p>
+<div  id="Flex_BCRN11-gk" data-vp="" class="lay_7VXay pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<a  id="Redi_O9UHN3-gk" data-vp="" class="lay_j5f7v3 pos_e8wtf3 mapa_G5kA64 vis_2ETHR3 " href="https://github.com/vic-Rokx/ryven/releases/tag/v0.1.1">
+<i  id="Icon_OQHYx3-gk" data-vp="" class="bi bi-download lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_l9lCZ1 ">
+</i>
+<p  id="Text_Em8gX1-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_BZHTA4 ">Download v0.1.1</p>
+</a>
+<a  id="Redi_fo2KE-gk" data-vp="" class="lay_j5f7v3 pos_e8wtf3 mapa_G5kA64 vis_UjIcn3 " href="https://github.com/vic-Rokx/ryven">
+<i  id="Icon_skMH72-gk" data-vp="" class="bi bi-github lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_j5mYU ">
+</i>
+<p  id="Text_i9RbQ1-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_T52DE3 ">View on GitHub</p>
+</a>
+</div>
+<div  id="Flex_KhtmY4-gk" data-vp="" style="max-width: 640px;" class="lay_AEgkh1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<div  id="Flex_xcxVE3-gk" data-vp="" class="lay_gOME12 pos_e8wtf3 mapa_WM2Wg4 vis_S7kvy2 ">
+<p  id="Text_UCjDG-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_PZpV71 ">./ryven postgres://user:password@localhost:5432/mydb</p>
+</div>
+</div>
+<div  id="Spac_CvT722-gk" data-vp="" class="lay_uXILa pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+</div>
+<div  id="Flex_2IL823-gk" data-vp="" class="lay_AEgkh1 pos_e8wtf3 mapa_CrkEb2 vis_4Ilvj3 ">
+<img  id="Imag_HgoIO1-gk" data-vp="" style="display: block; height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " loading="eager" src="/assets/shots/overview-dark.webp"alt="ryven&#39;s overview: the database&#39;s status, size, connections and cache hits, and charts of its last minutes of transactions, connections, rows read and rollbacks">
+</img>
+</div>
+</div>
+</div>
+<div  id="features" data-vp="" class="resp_vGLtr3 lay_PqEkO3 pos_e8wtf3 mapa_fG3Vk2 vis_gfo5Q1 ">
+<div  id="Flex_qLwEW-gk" data-vp="" style="max-width: 1200px;" class="lay_DHmlS1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<div  id="Flex_hpTBa3-gk" data-vp="" class="lay_j1WNg1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<p  id="Text_Y4TiF3-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">What it does</p>
+<h2  id="Head_9755Y4-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Look after the Postgres you already have, without leaving the browser
+</h2>
+</div>
+<div  id="Flex_Y29d54-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="false">
+<div  id="Flex_XHU5X3-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
+<p  id="Text_vYy2K1-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Overview</p>
+<h2  id="Head_Yf4Cw3-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">The last hour of your database, at a glance
+</h2>
+<p  id="Text_UbYwU-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Transactions, connections, rows read and written, cache hits, temp files and waiting locks, sampled every ten seconds and charted from the moment you open it. Below them: what is running now, the slowest statements from pg_stat_statements, and every table&#39;s dead rows, scans and vacuums.</p>
+</div>
+<div  id="Flex_uMYBT1-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
+<div  id="Flex_g35eP4-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_MZAGQ ">
+<img  id="Imag_FoNN93-gk" data-vp="" style="display: block; height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " loading="lazy" src="/assets/shots/overview-full-dark.webp"alt="The whole overview: activity charts, metrics, sessions, rows by operation, the slowest statements and each table&#39;s upkeep">
+</img>
+</div>
+</div>
+</div>
+<div  id="Flex_jJl8T3-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="true">
+<div  id="Flex_8lL8k2-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
+<p  id="Text_15e8b4-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Tables</p>
+<h2  id="Head_uNrv72-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Every table, every row
+</h2>
+<p  id="Text_TybUe-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Pick a table and read it a thousand rows at a time, with search, filters and each column&#39;s type. Add a row, edit a column, or select rows and delete them, in the same view.</p>
+</div>
+<div  id="Flex_JQKWf1-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
+<div  id="Flex_RmxPs2-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_DElXI2 ">
+<img  id="Imag_9zAxN2-gk" data-vp="" style="display: block; height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " loading="lazy" src="/assets/shots/database-dark.webp"alt="The table browser showing the orders table with its columns and rows">
+</img>
+</div>
+</div>
+</div>
+<div  id="Flex_3rrvY2-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="false">
+<div  id="Flex_RTr0e2-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
+<p  id="Text_jdU5d4-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">SQL</p>
+<h2  id="Head_hQrff2-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">A real editor, and the plan behind the query
+</h2>
+<p  id="Text_ewUNX3-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Write SQL with highlighting and completion from your schema, keep queries in tabs, and find them again in the history. Results come back as a table, a chart or JSON.</p>
+</div>
+<div  id="Flex_ADMZA2-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
+<div  id="Flex_Nzzlh2-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_L8V3b1 ">
+<img  id="Imag_FUIgF1-gk" data-vp="" style="display: block; height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " loading="lazy" src="/assets/shots/sql-dark.webp"alt="The SQL editor with a query joining customers, orders and products, and its results">
+</img>
+</div>
+</div>
+</div>
+<div  id="Flex_cwVE51-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="true">
+<div  id="Flex_D073F3-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
+<p  id="Text_CIVef-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">EXPLAIN ANALYZE</p>
+<h2  id="Head_ocXfh1-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Explain anything, change nothing
+</h2>
+<p  id="Text_R8QDd-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">EXPLAIN ANALYZE runs the statement for its timings, inside a transaction that is rolled back. Explaining a DELETE deletes nothing.</p>
+</div>
+<div  id="Flex_kh3bf1-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
+<div  id="Flex_of2aX-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_IEgpf2 ">
+<img  id="Imag_vXE3m3-gk" data-vp="" style="display: block; height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " loading="lazy" src="/assets/shots/explain-dark.webp"alt="The query plan of the query, with costs, rows and actual timings">
+</img>
+</div>
+</div>
+</div>
+<div  id="Flex_GifnL-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="false">
+<div  id="Flex_z9Ckw3-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
+<p  id="Text_7ZVC14-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Errors</p>
+<h2  id="Head_9TkbJ-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">The crashes your app reports, kept in your database
+</h2>
+<p  id="Text_SVHub4-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Your vapor app&#39;s backend writes its users&#39; crashes into your own Postgres with reverb-errors, and ryven reads them: grouped, with their stack traces, the request, and the events that led up to them. Resolve, ignore or delete; a resolved crash that comes back shows as regressed.</p>
+</div>
+<div  id="Flex_5qJ0l1-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
+<div  id="Flex_C7BXJ-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_eQ4Xk1 ">
+<img  id="Imag_xRirW4-gk" data-vp="" style="display: block; height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " loading="lazy" src="/assets/shots/errors-dark.webp"alt="The errors page: a list of crash groups and the stack trace of the selected one">
+</img>
+</div>
+</div>
+</div>
+<div  id="Flex_Hk6Y64-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 ">
+<div  id="Flex_6Mud44-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
+<p  id="Text_Vi8cg1-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">On a phone</p>
+<h2  id="Head_JzFGn2-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Check on it from anywhere
+</h2>
+<p  id="Text_F2NOp-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Every page fits a phone: the charts stack, a tapped error opens on its own, and the editor&#39;s queries, history and schemas are a tap away. Behind Google sign-in, it is safe to reach from outside.</p>
+</div>
+<div  id="Flex_5Z5E53-gk" data-vp="" class="lay_XcFTD3 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
+<div  id="Flex_DGJBH1-gk" data-vp="" style="flex: 0 1 260px; min-width: 0;" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<div  id="Flex_ewcVj-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_QUDWo2 ">
+<img  id="Imag_g8TjC1-gk" data-vp="" style="display: block; height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " loading="lazy" src="/assets/shots/phone-overview-dark.webp"alt="The overview on a phone">
+</img>
+</div>
+</div>
+<div  id="Flex_TDfZf2-gk" data-vp="" style="flex: 0 1 260px; min-width: 0;" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<div  id="Flex_EFb194-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_NbFar2 ">
+<img  id="Imag_EwZWb4-gk" data-vp="" style="display: block; height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " loading="lazy" src="/assets/shots/phone-errors-dark.webp"alt="A crash&#39;s stack trace on a phone">
+</img>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div  id="safe" data-vp="" class="resp_vGLtr3 lay_PqEkO3 pos_e8wtf3 mapa_fG3Vk2 vis_gfo5Q1 ">
+<div  id="Flex_QhhCW2-gk" data-vp="" style="max-width: 1200px;" class="lay_DHmlS1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<div  id="Flex_FJePA3-gk" data-vp="" class="lay_j1WNg1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<p  id="Text_7AmR94-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Safe by default</p>
+<h2  id="Head_YkTaH3-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">It runs whatever SQL it is sent, so it is built around its gate
+</h2>
+</div>
+<div  id="Flex_oC4eH3-gk" data-vp="" class="lay_3MGXW3 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<div  id="Flex_uOdbN4-gk" data-vp="" style="flex: 1 1 320px; min-width: 0;" class="lay_XDNI21 pos_e8wtf3 mapa_3RP2h2 vis_8ttQ04 ">
+<i  id="Icon_5hiVb2-gk" data-vp="" class="bi bi-lock lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_4Q2lF ">
+</i>
+<p  id="Text_aFwuT2-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_jnjJ3 ">Loopback only, unless you sign in</p>
+<p  id="Text_xrWbj-gk" data-vp="" style="line-height: 1.55;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_fXypP3 ">Without sign-in ryven listens on this machine alone, and answers only its own page: no other site you visit can reach it, nor a DNS rebinding.</p>
+</div>
+<div  id="Flex_RTIKx3-gk" data-vp="" style="flex: 1 1 320px; min-width: 0;" class="lay_XDNI21 pos_e8wtf3 mapa_3RP2h2 vis_8ttQ04 ">
+<i  id="Icon_wJdhn3-gk" data-vp="" class="bi bi-google lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_4Q2lF ">
+</i>
+<p  id="Text_mn4ZA3-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_jnjJ3 ">Google sign-in, by allow-list</p>
+<p  id="Text_C65aU3-gk" data-vp="" style="line-height: 1.55;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_fXypP3 ">Set an OAuth client and the addresses allowed in; every request checks the list again.</p>
+</div>
+<div  id="Flex_9eNiR1-gk" data-vp="" style="flex: 1 1 320px; min-width: 0;" class="lay_XDNI21 pos_e8wtf3 mapa_3RP2h2 vis_8ttQ04 ">
+<i  id="Icon_sAzxK3-gk" data-vp="" class="bi bi-eye lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_4Q2lF ">
+</i>
+<p  id="Text_FY9qD-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_jnjJ3 ">Read-only, if you like</p>
+<p  id="Text_syKkx3-gk" data-vp="" style="line-height: 1.55;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_fXypP3 ">READ_ONLY=1 makes transactions read-only by default. A role that can only SELECT cannot be talked out of it.</p>
+</div>
+<div  id="Flex_yYPxZ1-gk" data-vp="" style="flex: 1 1 320px; min-width: 0;" class="lay_XDNI21 pos_e8wtf3 mapa_3RP2h2 vis_8ttQ04 ">
+<i  id="Icon_fL9eV1-gk" data-vp="" class="bi bi-hourglass-split lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_4Q2lF ">
+</i>
+<p  id="Text_WreeE4-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_jnjJ3 ">Every statement has a timeout</p>
+<p  id="Text_hXXAh3-gk" data-vp="" style="line-height: 1.55;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_fXypP3 ">30 seconds unless you say otherwise, so a runaway query does not hold your database.</p>
+</div>
+<div  id="Flex_xHQTt-gk" data-vp="" style="flex: 1 1 320px; min-width: 0;" class="lay_XDNI21 pos_e8wtf3 mapa_3RP2h2 vis_8ttQ04 ">
+<i  id="Icon_ZsYeL3-gk" data-vp="" class="bi bi-shield-check lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_4Q2lF ">
+</i>
+<p  id="Text_MgYiK2-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_jnjJ3 ">TLS to Postgres</p>
+<p  id="Text_1H7xo3-gk" data-vp="" style="line-height: 1.55;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_fXypP3 ">sslmode=require or verify-full, as for psql, with Zig&#39;s own TLS: still one static binary, no OpenSSL.</p>
+</div>
+<div  id="Flex_gUsXV3-gk" data-vp="" style="flex: 1 1 320px; min-width: 0;" class="lay_XDNI21 pos_e8wtf3 mapa_3RP2h2 vis_8ttQ04 ">
+<i  id="Icon_eKmuu-gk" data-vp="" class="bi bi-database lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_4Q2lF ">
+</i>
+<p  id="Text_Hsb8j3-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_jnjJ3 ">Nothing outlives a query</p>
+<p  id="Text_6pAM01-gk" data-vp="" style="line-height: 1.55;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_fXypP3 ">Each one starts clean on its pooled connection: settings, temporary tables and roles never reach the next.</p>
+</div>
+</div>
+</div>
+</div>
+<div  id="install" data-vp="" class="resp_vGLtr3 lay_PqEkO3 pos_e8wtf3 mapa_fG3Vk2 vis_gfo5Q1 ">
+<div  id="Flex_ObRiU2-gk" data-vp="" style="max-width: 1200px;" class="lay_DHmlS1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<div  id="Flex_pJmXZ-gk" data-vp="" class="lay_j1WNg1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<p  id="Text_QBqxg2-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Run it in a minute</p>
+<h2  id="Head_91zYa3-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Then open http://localhost:8080
+</h2>
+<p  id="Text_t6JiS-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Settings beyond the database are environment variables, or a .env beside it: the pool&#39;s size, the timeout, read-only, sign-in. The README has them all.</p>
+</div>
+<div  id="Flex_DIu4G4-gk" data-vp="" class="lay_mh8xP1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<p  id="Text_iY4Rj3-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_xnAdq ">Download it</p>
+<p  id="Text_6r1FC2-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_fXypP3 ">One binary for Linux (static, x86_64 and arm64) or macOS (Apple silicon and Intel).</p>
+<div  id="Flex_m1D8A1-gk" data-vp="" class="lay_tVyff1 pos_e8wtf3 mapa_WM2Wg4 vis_S7kvy2 ">
+<p  id="Text_60sbm3-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_xReLt "># Linux, x86_64</p>
+<p  id="Text_yXP0u2-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_PZpV71 ">curl -L https://github.com/vic-Rokx/ryven/releases/download/v0.1.1/ryven-v0.1.1-x86_64-linux-musl.tar.gz | tar -xz</p>
+<p  id="Text_aHVte1-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_PZpV71 ">./ryven postgres://user:password@localhost:5432/mydb</p>
+<p  id="Text_jqXa32-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_PZpV71 "></p>
+<p  id="Text_8MFt51-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_xReLt "># macOS, Apple silicon: unquarantine the unsigned binary</p>
+<p  id="Text_Ml0Ob4-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_PZpV71 ">curl -L https://github.com/vic-Rokx/ryven/releases/download/v0.1.1/ryven-v0.1.1-aarch64-macos.tar.gz | tar -xz</p>
+<p  id="Text_VD7d14-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_PZpV71 ">xattr -d com.apple.quarantine ryven</p>
+</div>
+</div>
+<div  id="Flex_3KKx51-gk" data-vp="" class="lay_mh8xP1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<p  id="Text_v3Hqp2-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_xnAdq ">Or Docker</p>
+<p  id="Text_7GYcB3-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_fXypP3 ">With a Postgres of its own to look at, published on 127.0.0.1 only.</p>
+<div  id="Flex_jkS4P3-gk" data-vp="" class="lay_tVyff1 pos_e8wtf3 mapa_WM2Wg4 vis_S7kvy2 ">
+<p  id="Text_gYu2G2-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_PZpV71 ">git clone https://github.com/vic-Rokx/ryven &amp;&amp; cd ryven</p>
+<p  id="Text_eWsbO3-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_PZpV71 ">docker compose up --build</p>
+<p  id="Text_73erY4-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_PZpV71 ">open http://localhost:8080</p>
+</div>
+</div>
+<div  id="Flex_y8uCe2-gk" data-vp="" class="lay_mh8xP1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<p  id="Text_4xTy81-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_xnAdq ">Or build it</p>
+<p  id="Text_5zTHP3-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_fXypP3 ">With Zig 0.16, for this machine or any other.</p>
+<div  id="Flex_LZAnS2-gk" data-vp="" class="lay_tVyff1 pos_e8wtf3 mapa_WM2Wg4 vis_S7kvy2 ">
+<p  id="Text_Jk6fn-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_PZpV71 ">zig build ryven</p>
+<p  id="Text_Wxbpv1-gk" data-vp="" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_PZpV71 ">zig build ryven -Dryven-target=x86_64-linux-musl</p>
+</div>
+</div>
+<div  id="Flex_h94if4-gk" data-vp="" class="lay_XonOy2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<a  id="Redi_s5NUU-gk" data-vp="" class="lay_j5f7v3 pos_e8wtf3 mapa_G5kA64 vis_2ETHR3 " href="https://github.com/vic-Rokx/ryven/releases/tag/v0.1.1">
+<i  id="Icon_plVtP4-gk" data-vp="" class="bi bi-download lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_l9lCZ1 ">
+</i>
+<p  id="Text_jvyuz1-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_BZHTA4 ">All downloads</p>
+</a>
+<a  id="Redi_BMLtr1-gk" data-vp="" class="lay_j5f7v3 pos_e8wtf3 mapa_G5kA64 vis_UjIcn3 " href="https://github.com/vic-Rokx/ryven#readme">
+<i  id="Icon_2uugk1-gk" data-vp="" class="bi bi-book lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_j5mYU ">
+</i>
+<p  id="Text_9ZisW2-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_T52DE3 ">Read the README</p>
+</a>
+</div>
+</div>
+</div>
+<div  id="Flex_2TZKc1-gk" data-vp="" class="resp_PLJo14 lay_PqEkO3 pos_e8wtf3 mapa_PrgMM1 vis_p4U4d3 ">
+<div  id="Flex_gi9fk1-gk" data-vp="" style="max-width: 1200px;" class="lay_tB0Ag3 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<div  id="Flex_N3enF2-gk" data-vp="" class="lay_tav5W4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<p  id="Text_AvISG2-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_eqYYw ">Written in Zig on the</p>
+<a  id="Redi_r3D1d3-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " href="https://senet.run">
+<p  id="Text_70rul2-gk" data-vp="" style="text-decoration: underline; text-underline-offset: 3px;" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_0wNwt1 ">Senet</p>
+</a>
+<p  id="Text_nKT413-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_eqYYw ">stack:</p>
+<a  id="Redi_CfNYU3-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " href="https://github.com/senet-toolbox/vapor">
+<p  id="Text_XobpH-gk" data-vp="" style="text-decoration: underline; text-underline-offset: 3px;" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_0wNwt1 ">vapor</p>
+</a>
+<a  id="Redi_KOiI24-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " href="https://github.com/senet-toolbox/reverb">
+<p  id="Text_PEr4E-gk" data-vp="" style="text-decoration: underline; text-underline-offset: 3px;" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_0wNwt1 ">reverb</p>
+</a>
+<a  id="Redi_nUt1e4-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " href="https://github.com/senet-toolbox/pg-orm">
+<p  id="Text_AuNFx3-gk" data-vp="" style="text-decoration: underline; text-underline-offset: 3px;" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_0wNwt1 ">pg-orm</p>
+</a>
+<a  id="Redi_4j43o1-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " href="https://vapor-ui.com">
+<p  id="Text_Mf8XN1-gk" data-vp="" style="text-decoration: underline; text-underline-offset: 3px;" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_0wNwt1 ">vapor-ui</p>
+</a>
+</div>
+<div  id="Flex_wKBkd1-gk" data-vp="" class="lay_GJ3jI4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<a  id="Redi_FQ6JO4-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " href="https://kyber.run">
+<p  id="Text_Np62k2-gk" data-vp="" style="text-decoration: underline; text-underline-offset: 3px;" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_0wNwt1 ">kyber.run</p>
+</a>
+<a  id="Redi_LBxSC1-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " href="https://github.com/vic-Rokx/ryven">
+<p  id="Text_OdfEO-gk" data-vp="" style="text-decoration: underline; text-underline-offset: 3px;" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_0wNwt1 ">GitHub</p>
+</a>
+<p  id="Text_QxXio-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_qxiDO2 ">MIT</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body>
+</html>

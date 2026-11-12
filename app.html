@@ -1,0 +1,223 @@
+<!doctype html>
+<html data-vapor-wasm="/_vapor/vapor.648073c312.wasm" data-vapor-browser="/_vapor/browser.4c4c45d709.js" lang="en">
+
+<head>
+  <title>ryven: a Postgres dashboard you run yourself</title>
+  <meta charset="utf-8" />
+  <meta name="description"
+    content="ryven is a dashboard for your Postgres that you run yourself: one binary, pointed at your database, in your browser. Live charts, every table, SQL with EXPLAIN ANALYZE, and the crashes your vapor app reports." />
+  <meta property="og:title" content="ryven: a Postgres dashboard you run yourself" />
+  <meta property="og:description"
+    content="One binary, pointed at your database, in your browser. Live charts, every table, SQL with EXPLAIN ANALYZE." />
+  <meta property="og:image" content="https://ryven.kyber.run/assets/shots/overview-dark.webp" />
+  <meta property="og:url" content="https://ryven.kyber.run" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/_vapor/vapor.648073c312.wasm" as="fetch" type="application/wasm" crossorigin />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap" rel="stylesheet" media="print"
+    onload="this.media = 'all'" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
+
+  <script type="module" src="/_vapor/bundle.7cd4537fbf.js"></script>
+  <!-- Bootstrap Icons 1.13.1, served with the app so it works offline. -->
+  <link rel="stylesheet" href="/assets/css/bootstrap-icons.css" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Barlow", sans-serif;
+      font-optical-sizing: auto;
+      height: 100dvh;
+      width: 100%;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      background-color: rgba(var(--background));
+      color: rgb(var(--text_color));
+      transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE/Edge */
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-scrollbar: display: none;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      /* Chrome, Safari, Opera */
+      margin: 0;
+    }
+
+    ::view-transition-group(*) {
+      animation-duration: 150ms;
+    }
+
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+      /* animation: none; */
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    textarea {
+      line-height: 1.5;
+      font-size-adjust: 0.5;
+    }
+
+    table {
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+
+    /* The ring a control shows while it has keyboard focus: on Tab, not
+       on a mouse click. */
+    :focus-visible {
+      outline: 2px solid rgb(var(--text_color));
+      outline-offset: 2px;
+    }
+
+    button, p, input {
+      font-family: inherit;
+    }
+
+    button {
+      font-family: inherit;
+      /* font-size: inherit; */
+      /* line-height: inherit; */
+      color: inherit;
+      /* min-width: 0; */
+      /* box-sizing: border-box; */
+      /* display: flex; */
+      /* add these: */
+      /* padding: 0; */
+      /* border: none; */
+      /* background: none; */
+      /* text-align: inherit; */
+      /* appearance: none; */
+    }
+
+
+
+    input[type="file"]::file-selector-button {
+      background: transparent;
+      color: transparent;
+      border: none;
+    }
+
+
+    input:-webkit-autofill {
+      -webkit-box-shadow: 0 0 0 1000px transparent inset;
+      -webkit-text-fill-color: inherit;
+      caret-color: inherit;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    .reload-indicator {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      background: #1a1a1a;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 6px;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      font-family: system-ui, sans-serif;
+      font-size: 14px;
+      z-index: 99999;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .reload-indicator.visible {
+      display: flex;
+    }
+
+    .reload-spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid #333;
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* The site's feature rows that put their screenshot on the left; doubled
+       to outrank the element's own class. A phone stacks them all alike. */
+    [data-flip="true"][data-flip="true"] {
+      flex-direction: row-reverse;
+    }
+
+    /* A feature's text keeps level with the top of its screenshot, and in
+       view while a tall one scrolls past. */
+    [data-beside="true"] {
+      flex: 1 1 340px;
+      min-width: 0;
+      position: sticky;
+      top: 48px;
+      align-self: flex-start;
+    }
+
+    /* A feature's screenshots: the larger share of its row. */
+    [data-shots="true"] {
+      flex: 2 1 560px;
+      min-width: 0;
+    }
+
+    @media (max-width: 767px) {
+      [data-flip="true"][data-flip="true"] {
+        flex-direction: column;
+      }
+
+      /* Stacked, a basis would be a height. */
+      [data-beside="true"],
+      [data-shots="true"] {
+        flex: none;
+        width: 100%;
+        position: static;
+        align-self: stretch;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main id="contents" style="display: contents"></main>
+  <div id="layer-tooltip" class="layer-root"></div>
+  <div id="layer-popover" class="layer-root"></div>
+  <div id="layer-modal"></div>
+  <div id="layer-toast"></div>
+</body>
+
+</html>
