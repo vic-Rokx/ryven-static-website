@@ -1,5 +1,5 @@
 <!doctype html>
-<html data-vapor-wasm="/_vapor/vapor.b86c84c2b8.wasm" data-vapor-browser="/_vapor/browser.4c4c45d709.js" lang="en">
+<html data-vapor-wasm="/_vapor/vapor.ff3b873474.wasm" data-vapor-browser="/_vapor/browser.4c4c45d709.js" lang="en">
 
 <head>
   <title>ryven: a Postgres dashboard you run yourself</title>
@@ -15,20 +15,13 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
-  <link rel="preload" href="/_vapor/vapor.b86c84c2b8.wasm" as="fetch" type="application/wasm" crossorigin />
+  <link rel="preload" href="/_vapor/vapor.ff3b873474.wasm" as="fetch" type="application/wasm" crossorigin />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <link href="https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap" rel="stylesheet" media="print"
-    onload="this.media = 'all'" />
-
   <link
-    href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet" />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
     rel="stylesheet" />
 
   <script type="module" src="/_vapor/bundle.7cd4537fbf.js"></script>
@@ -39,7 +32,7 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: "Barlow", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-optical-sizing: auto;
       height: 100dvh;
       width: 100%;
@@ -171,6 +164,32 @@
       to {
         transform: rotate(360deg);
       }
+    }
+
+    /* A screenshot comes in both themes (Home.zig's Shot); the page shows
+       its own theme's one. */
+    [data-shot] {
+      display: block;
+    }
+
+    [data-shot="dark"],
+    [data-theme="dark"] [data-shot="light"] {
+      display: none;
+    }
+
+    [data-theme="dark"] [data-shot="dark"] {
+      display: block;
+    }
+
+    /* The shots are of ryven's own themes, blue in light and lime in dark:
+       grey on this black and white page, in colour while hovered. */
+    [data-shot] {
+      filter: grayscale(1);
+      transition: filter 0.3s ease;
+    }
+
+    [data-shot]:hover {
+      filter: none;
     }
 
     /* The site's feature rows that put their screenshot on the left; doubled
