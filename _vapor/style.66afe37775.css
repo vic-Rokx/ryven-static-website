@@ -322,6 +322,13 @@ border-width:0px 0px 0px 0px;
 border-style: solid;
 text-decoration:none;
 }
+.vis_SZFyH1{
+border-width:1px 1px 1px 1px;
+border-color:rgb(var(--border_color_light));
+border-style: solid;
+box-shadow:4px 4px 0px rgb(var(--tint));text-decoration:none;
+transition:color 200ms ease, background-color 200ms ease, border-color 200ms ease, border-radius 200ms ease, outline-color 200ms ease, outline-width 200ms ease, outline-offset 200ms ease, text-decoration-color 200ms ease, fill 200ms ease, stroke 200ms ease, opacity 200ms ease, box-shadow 200ms ease, transform 200ms ease, translate 200ms ease, scale 200ms ease, rotate 200ms ease, filter 200ms ease, backdrop-filter 200ms ease;
+}
 .vis_qxiDO2{
 font-size:15px;
 font-weight:300;
@@ -584,6 +591,16 @@ margin:0px 0px 0px 0px;
 box-shadow:10px 10px 0px rgb(var(--tint));text-decoration:none;
 transform:translateX(-6.00px) translateY(-6.00px) ;
 }
+.intr_4bHW24:hover{
+border-width:0px 0px 1px 0px;
+border-color:rgb(var(--text_color));
+border-style: solid;
+text-decoration:none;
+}
+.intr_P1urm3:hover{
+box-shadow:10px 10px 0px rgb(var(--tint));text-decoration:none;
+transform:translateX(-6.00px) translateY(-6.00px) ;
+}
 .intr_XlOQN:hover{
 background-color:rgb(var(--text_color));
 color:rgb(var(--background));
@@ -604,12 +621,6 @@ text-decoration:none;
 box-shadow:10px 10px 0px rgb(var(--tint));text-decoration:none;
 transform:translateX(-6.00px) translateY(-6.00px) ;
 }
-.intr_4bHW24:hover{
-border-width:0px 0px 1px 0px;
-border-color:rgb(var(--text_color));
-border-style: solid;
-text-decoration:none;
-}
 .intr_2Y8Sm3:hover{
 box-shadow:10px 10px 0px rgb(var(--tint));text-decoration:none;
 transform:translateX(-6.00px) translateY(-6.00px) ;
@@ -618,7 +629,7 @@ transform:translateX(-6.00px) translateY(-6.00px) ;
 box-shadow:10px 10px 0px rgb(var(--tint));text-decoration:none;
 transform:translateX(-6.00px) translateY(-6.00px) ;
 }
-.intr_P1urm3:hover{
+.intr_OqA281:hover{
 box-shadow:10px 10px 0px rgb(var(--tint));text-decoration:none;
 transform:translateX(-6.00px) translateY(-6.00px) ;
 }
