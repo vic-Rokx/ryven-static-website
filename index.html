@@ -1,21 +1,21 @@
 <!doctype html>
-<html data-vapor-wasm="/_vapor/vapor.e400055305.wasm" data-vapor-browser="/_vapor/browser.4c4c45d709.js" lang="en">
+<html data-vapor-wasm="/_vapor/vapor.d7f38db15a.wasm" data-vapor-browser="/_vapor/browser.4c4c45d709.js" lang="en">
 
 <head>
   <title>ryven: a Postgres dashboard you run yourself</title>
   <meta charset="utf-8" />
   <meta name="description"
-    content="ryven is a dashboard for your Postgres that you run yourself: one binary, pointed at your database, in your browser. Live charts, every table, SQL with EXPLAIN ANALYZE, and the crashes your vapor app reports." />
+    content="ryven is a dashboard for your Postgres that you run yourself: one binary, pointed at your database, in your browser. Its health at a glance, the slowest queries, who blocks whom, every table and row, SQL with EXPLAIN ANALYZE, and the crashes your vapor app reports." />
   <meta property="og:title" content="ryven: a Postgres dashboard you run yourself" />
   <meta property="og:description"
-    content="One binary, pointed at your database, in your browser. Live charts, every table, SQL with EXPLAIN ANALYZE." />
+    content="One binary, pointed at your database, in your browser. Its health, slow queries, locks, every table and row, and SQL with EXPLAIN ANALYZE." />
   <meta property="og:image" content="https://ryven.kyber.run/assets/shots/overview-dark.webp" />
   <meta property="og:url" content="https://ryven.kyber.run" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
-  <link rel="preload" href="/_vapor/vapor.e400055305.wasm" as="fetch" type="application/wasm" crossorigin />
+  <link rel="preload" href="/_vapor/vapor.d7f38db15a.wasm" as="fetch" type="application/wasm" crossorigin />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -218,8 +218,8 @@
       }
     }
   </style>
-  <link rel="stylesheet" href="/_vapor/style.66afe37775.css" />
-  <link rel="stylesheet" href="/_vapor/style_variables.47c7a8e897.css" /></head>
+  <link rel="stylesheet" href="/_vapor/style.cdb728612d.css" />
+  <link rel="stylesheet" href="/_vapor/style_variables.def3acdf63.css" /></head>
 
 <body>
   <main id="contents" style="display: contents"><div  id="Flex_OIm3f-gk" data-vp="" class="lay_FcuM62 pos_e8wtf3 mapa_CrkEb2 vis_QnFQg1 ">
@@ -253,7 +253,7 @@
 <div  id="Flex_9Gdpj2-gk" data-vp="" class="lay_Y5LON3 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
 <div  id="Flex_6YIwC1-gk" data-vp="" class="lay_CH9vL4 pos_e8wtf3 mapa_CrkEb2 vis_wLPk34 ">
 </div>
-<p  id="Text_9UmBt1-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Postgres, in your browser · v0.1.1</p>
+<p  id="Text_9UmBt1-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Postgres, in your browser · v0.2.0</p>
 </div>
 <div  id="Flex_USj7Z-gk" data-vp="" class="lay_z30wE4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " role="heading" aria-level="1">
 <div  id="Flex_YZusW4-gk" data-vp="" class="resp_zqqCw1 lay_aMUH2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
@@ -265,12 +265,12 @@
 <p  id="Text_XEppp3-gk" data-vp="" style="font-size: clamp(38px, 8vw, 56px); line-height: 1.02; letter-spacing: -0.02em;" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_ouge74 ">yourself</p>
 </div>
 </div>
-<p  id="Text_ahi7v1-gk" data-vp="" class="lay_nGDAe1 pos_e8wtf3 mapa_CrkEb2 vis_fXypP3 ">One binary, pointed at your database, in your browser. Live charts of the last hour, every table and row, SQL with EXPLAIN ANALYZE, and the crashes your apps report. Your data stays where it is.</p>
+<p  id="Text_ahi7v1-gk" data-vp="" class="lay_nGDAe1 pos_e8wtf3 mapa_CrkEb2 vis_fXypP3 ">One binary, pointed at your database, in your browser. Its health at a glance, the queries that take the time, who is blocking whom, every table and row to read and change, SQL with EXPLAIN ANALYZE, and the crashes your apps report. Your data stays where it is.</p>
 <div  id="Flex_BCRN11-gk" data-vp="" class="lay_7VXay pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
-<a  id="Redi_O9UHN3-gk" data-vp="" class="lay_j5f7v3 pos_e8wtf3 mapa_G5kA64 vis_LhZZ53 intr_W1CvM2 " href="https://github.com/vic-Rokx/ryven/releases/tag/v0.1.1">
+<a  id="Redi_O9UHN3-gk" data-vp="" class="lay_j5f7v3 pos_e8wtf3 mapa_G5kA64 vis_LhZZ53 intr_W1CvM2 " href="https://github.com/vic-Rokx/ryven/releases/tag/v0.2.0">
 <i  id="Icon_OQHYx3-gk" data-vp="" class="bi bi-download lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_RpCl33 ">
 </i>
-<p  id="Text_Em8gX1-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_QrnhR ">Download v0.1.1</p>
+<p  id="Text_Em8gX1-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_QrnhR ">Download v0.2.0</p>
 </a>
 <a  id="Redi_fo2KE-gk" data-vp="" class="lay_j5f7v3 pos_e8wtf3 mapa_G5kA64 vis_nCPuR3 intr_XlOQN " href="https://github.com/vic-Rokx/ryven">
 <i  id="Icon_skMH72-gk" data-vp="" class="bi bi-github lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_RpCl33 ">
@@ -295,9 +295,9 @@
 </div>
 <div  id="Flex_2IL823-gk" data-vp="" class="resp_sW1u63 lay_AEgkh1 pos_e8wtf3 mapa_Dr2FO vis_OJh2i1 ">
 <div  id="Flex_De6Bx3-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_NlrDO3 intr_rhCk94 ">
-<img  id="Imag_rdHB84-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="eager" src="/assets/shots/overview-light.webp"alt="ryven&#39;s overview: the database&#39;s status, size, connections and cache hits, and charts of its last minutes of transactions, connections, rows read and rollbacks">
+<img  id="Imag_rdHB84-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="eager" src="/assets/shots/overview-light.webp"alt="ryven&#39;s overview: whether the database is healthy, its size, the advisors, open errors, the top query and WAL archiving, beside the server&#39;s connections and cache hits">
 </img>
-<img  id="Imag_drtnq3-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/overview-dark.webp"alt="ryven&#39;s overview: the database&#39;s status, size, connections and cache hits, and charts of its last minutes of transactions, connections, rows read and rollbacks">
+<img  id="Imag_drtnq3-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/overview-dark.webp"alt="ryven&#39;s overview: whether the database is healthy, its size, the advisors, open errors, the top query and WAL archiving, beside the server&#39;s connections and cache hits">
 </img>
 </div>
 </div>
@@ -317,120 +317,168 @@
 <div  id="Flex_jJl8T3-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="false">
 <div  id="Flex_8lL8k2-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
 <p  id="Text_15e8b4-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Overview</p>
-<h2  id="Head_uNrv72-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">The last hour of your database, at a glance
+<h2  id="Head_uNrv72-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Healthy or not, the moment it opens
 </h2>
-<p  id="Text_TybUe-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Transactions, connections, rows read and written, cache hits, temp files and waiting locks, sampled every ten seconds and charted from the moment you open it. Below them: what is running now, the slowest statements from pg_stat_statements, and every table&#39;s dead rows, scans and vacuums.</p>
+<p  id="Text_TybUe-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Status, size, what the advisors found, your app&#39;s open errors, the statement taking the most time and when WAL was last archived, read straight from Postgres with nothing to wait for. Then the totals since the statistics were reset, and the last hour charted below: transactions, rows, cache hits, temp files and locks.</p>
 </div>
 <div  id="Flex_JQKWf1-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
 <div  id="Flex_RmxPs2-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_f2HY4 intr_78jvP3 ">
-<img  id="Imag_9zAxN2-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/overview-full-light.webp"alt="The whole overview: activity charts, metrics, sessions, rows by operation, the slowest statements and each table&#39;s upkeep">
+<img  id="Imag_9zAxN2-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/overview-full-light.webp"alt="The whole overview: six status boxes, the server&#39;s connections and cache hits, the totals since the statistics reset, and the activity charts">
 </img>
-<img  id="Imag_T4pk23-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/overview-full-dark.webp"alt="The whole overview: activity charts, metrics, sessions, rows by operation, the slowest statements and each table&#39;s upkeep">
+<img  id="Imag_T4pk23-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/overview-full-dark.webp"alt="The whole overview: six status boxes, the server&#39;s connections and cache hits, the totals since the statistics reset, and the activity charts">
 </img>
 </div>
 </div>
 </div>
 <div  id="Flex_3rrvY2-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="true">
 <div  id="Flex_RTr0e2-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
-<p  id="Text_jdU5d4-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Advisors</p>
-<h2  id="Head_hQrff2-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">What is worth fixing, and the SQL that fixes it
+<p  id="Text_jdU5d4-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Queries</p>
+<h2  id="Head_hQrff2-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Where the time goes
 </h2>
-<p  id="Text_ewUNX3-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Unused and duplicate indexes, foreign keys without one, dead rows waiting for a vacuum, sequences running out, sessions idle in a transaction: read from Postgres&#39;s own catalogs and statistics, each with why it matters and its fix as SQL. Open the fix in the editor to read it first; nothing runs on its own.</p>
+<p  id="Text_ewUNX3-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Every statement pg_stat_statements counted, by total time, average, calls or rows: its share of all the time, its slowest run and spread, cache hits and what spilled to disk. Copy it, open it in the editor, or open its plan; the dashboard&#39;s own queries are left out.</p>
 </div>
 <div  id="Flex_ADMZA2-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
 <div  id="Flex_Nzzlh2-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_ebbLF1 intr_P1urm3 ">
-<img  id="Imag_FUIgF1-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/advisors-light.webp"alt="The advisors page: a foreign key without an index, with the CREATE INDEX that fixes it, and a note that the dashboard connects as a superuser">
+<img  id="Imag_FUIgF1-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/queries-light.webp"alt="The queries page: statements with their share of the time, calls, averages and cache hits">
 </img>
-<img  id="Imag_sO8MM4-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/advisors-dark.webp"alt="The advisors page: a foreign key without an index, with the CREATE INDEX that fixes it, and a note that the dashboard connects as a superuser">
+<img  id="Imag_sO8MM4-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/queries-dark.webp"alt="The queries page: statements with their share of the time, calls, averages and cache hits">
 </img>
 </div>
 </div>
 </div>
 <div  id="Flex_cwVE51-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="false">
 <div  id="Flex_D073F3-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
-<p  id="Text_CIVef-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Tables</p>
-<h2  id="Head_ocXfh1-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Every table, every row
+<p  id="Text_CIVef-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Sessions</p>
+<h2  id="Head_ocXfh1-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Who is connected, and who is blocking whom
 </h2>
-<p  id="Text_R8QDd-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Pick a table and read it a thousand rows at a time, with search, filters and each column&#39;s type. Add a row, edit a column, or select rows and delete them, in the same view.</p>
+<p  id="Text_R8QDd-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Every session on the database, live: what it runs, how long its transaction has been open, what it waits for. A session holding a lock shows first with the ones queued behind it. Cancel a statement or close a session from there, unless the dashboard is read-only.</p>
 </div>
 <div  id="Flex_kh3bf1-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
 <div  id="Flex_of2aX-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_xtApO1 intr_xlY0J2 ">
-<img  id="Imag_vXE3m3-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/database-light.webp"alt="The table browser showing the orders table with its columns and rows">
+<img  id="Imag_vXE3m3-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/sessions-light.webp"alt="The sessions page: a billing worker holding a row lock, and a checkout request waiting behind it">
 </img>
-<img  id="Imag_MKT1C-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/database-dark.webp"alt="The table browser showing the orders table with its columns and rows">
+<img  id="Imag_MKT1C-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/sessions-dark.webp"alt="The sessions page: a billing worker holding a row lock, and a checkout request waiting behind it">
 </img>
 </div>
 </div>
 </div>
 <div  id="Flex_GifnL-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="true">
 <div  id="Flex_z9Ckw3-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
-<p  id="Text_7ZVC14-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">SQL</p>
-<h2  id="Head_9TkbJ-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">A real editor, and the plan behind the query
+<p  id="Text_7ZVC14-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Advisors</p>
+<h2  id="Head_9TkbJ-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">What is worth fixing, and the SQL that fixes it
 </h2>
-<p  id="Text_SVHub4-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Write SQL with highlighting and completion from your schema, keep queries in tabs, and find them again in the history. Results come back as a table, a chart or JSON.</p>
+<p  id="Text_SVHub4-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Unused and duplicate indexes, foreign keys without one, dead rows waiting for a vacuum, sequences running out, sessions idle in a transaction: read from Postgres&#39;s own catalogs and statistics, each with why it matters and its fix as SQL. Open the fix in the editor to read it first; nothing runs on its own.</p>
 </div>
 <div  id="Flex_5qJ0l1-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
 <div  id="Flex_C7BXJ-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_g4MsV2 intr_2Y8Sm3 ">
-<img  id="Imag_xRirW4-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/sql-light.webp"alt="The SQL editor with a query joining customers, orders and products, and its results">
+<img  id="Imag_xRirW4-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/advisors-light.webp"alt="The advisors page: a foreign key without an index, with the CREATE INDEX that fixes it, and a note that the dashboard connects as a superuser">
 </img>
-<img  id="Imag_Di9y23-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/sql-dark.webp"alt="The SQL editor with a query joining customers, orders and products, and its results">
+<img  id="Imag_Di9y23-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/advisors-dark.webp"alt="The advisors page: a foreign key without an index, with the CREATE INDEX that fixes it, and a note that the dashboard connects as a superuser">
 </img>
 </div>
 </div>
 </div>
 <div  id="Flex_Hk6Y64-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="false">
 <div  id="Flex_6Mud44-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
-<p  id="Text_Vi8cg1-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">EXPLAIN ANALYZE</p>
-<h2  id="Head_JzFGn2-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Explain anything, change nothing
+<p  id="Text_Vi8cg1-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Tables</p>
+<h2  id="Head_JzFGn2-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Every row, and a change you can read first
 </h2>
-<p  id="Text_F2NOp-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">EXPLAIN ANALYZE runs the statement for its timings, inside a transaction that is rolled back. Explaining a DELETE deletes nothing.</p>
+<p  id="Text_F2NOp-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Read a table a thousand rows at a time, with search and filters. Double-click a row to change it: it is read again by its primary key, every column editable or NULL, and the UPDATE shows before it runs. Delete it the same way, with a second press.</p>
 </div>
 <div  id="Flex_5Z5E53-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
 <div  id="Flex_DGJBH1-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_xl3Xj intr_odK5I ">
-<img  id="Imag_8hr3V-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/explain-light.webp"alt="The query plan of the query, with costs, rows and actual timings">
+<img  id="Imag_8hr3V-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/row-editor-light.webp"alt="The orders table with a row open in the editor, its status changed and the UPDATE it will run">
 </img>
-<img  id="Imag_h37WN4-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/explain-dark.webp"alt="The query plan of the query, with costs, rows and actual timings">
+<img  id="Imag_h37WN4-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/row-editor-dark.webp"alt="The orders table with a row open in the editor, its status changed and the UPDATE it will run">
 </img>
 </div>
 </div>
 </div>
 <div  id="Flex_6mUpF1-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="true">
 <div  id="Flex_glVOb4-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
-<p  id="Text_Km1Nv-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Errors</p>
-<h2  id="Head_F1QaH4-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">The crashes your app reports, kept in your database
+<p  id="Text_Km1Nv-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Structure</p>
+<h2  id="Head_F1QaH4-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Columns, indexes and keys, changed in the open
 </h2>
-<p  id="Text_HK80L3-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Your vapor app&#39;s backend writes its users&#39; crashes into your own Postgres with reverb-errors, and ryven reads them: grouped, with their stack traces, the request, and the events that led up to them. Resolve, ignore or delete; a resolved crash that comes back shows as regressed.</p>
+<p  id="Text_HK80L3-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">A table&#39;s columns, indexes with their size and use, constraints, and the tables that point at it. Add, rename or retype a column, change its default, make or drop an index: each change is written out as SQL first, and runs in one transaction.</p>
 </div>
 <div  id="Flex_wGfS91-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
 <div  id="Flex_ZTBcZ-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_uhu0Z1 intr_enlwH1 ">
-<img  id="Imag_13mkw2-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/errors-light.webp"alt="The errors page: a list of crash groups and the stack trace of the selected one">
+<img  id="Imag_13mkw2-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/structure-light.webp"alt="The structure of the orders table, with a column being added and the ALTER TABLE it will run">
 </img>
-<img  id="Imag_hMGhN-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/errors-dark.webp"alt="The errors page: a list of crash groups and the stack trace of the selected one">
+<img  id="Imag_hMGhN-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/structure-dark.webp"alt="The structure of the orders table, with a column being added and the ALTER TABLE it will run">
 </img>
 </div>
 </div>
 </div>
-<div  id="Flex_PtnQ41-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 ">
+<div  id="Flex_PtnQ41-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="false">
 <div  id="Flex_7mX884-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
-<p  id="Text_AmvLk-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">On a phone</p>
-<h2  id="Head_YuPgL4-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Check on it from anywhere
+<p  id="Text_AmvLk-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">SQL</p>
+<h2  id="Head_YuPgL4-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">A real editor, and the plan behind the query
 </h2>
-<p  id="Text_mGIcs3-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Every page fits a phone: the charts stack, a tapped error opens on its own, and the editor&#39;s queries, history and schemas are a tap away. Behind Google sign-in, it is safe to reach from outside.</p>
+<p  id="Text_mGIcs3-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Write SQL with highlighting and completion from your schema, keep queries in tabs, and find them again in the history. Results come back as a table, a chart or JSON.</p>
 </div>
-<div  id="Flex_lY93s3-gk" data-vp="" class="lay_XcFTD3 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
-<div  id="Flex_qq4s4-gk" data-vp="" style="flex: 0 1 260px; min-width: 0;" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
-<div  id="Flex_LZBR93-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_TTBcE intr_3gOQb1 ">
-<img  id="Imag_v8lqo3-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/phone-overview-light.webp"alt="The overview on a phone">
+<div  id="Flex_lY93s3-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
+<div  id="Flex_qq4s4-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_TTBcE intr_3gOQb1 ">
+<img  id="Imag_p2RI31-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/sql-light.webp"alt="The SQL editor with a query joining customers, orders and products, and its results">
 </img>
-<img  id="Imag_nN4ro3-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/phone-overview-dark.webp"alt="The overview on a phone">
+<img  id="Imag_6buoP3-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/sql-dark.webp"alt="The SQL editor with a query joining customers, orders and products, and its results">
 </img>
 </div>
 </div>
-<div  id="Flex_3SoHY-gk" data-vp="" style="flex: 0 1 260px; min-width: 0;" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
-<div  id="Flex_lamCu2-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_SZFyH1 intr_OqA281 ">
-<img  id="Imag_uDW652-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/phone-errors-light.webp"alt="A crash&#39;s stack trace on a phone">
+</div>
+<div  id="Flex_nim362-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="true">
+<div  id="Flex_zOb5n3-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
+<p  id="Text_pHe0Y-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">EXPLAIN ANALYZE</p>
+<h2  id="Head_KQYQN4-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Explain anything, change nothing
+</h2>
+<p  id="Text_MPGFM1-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">EXPLAIN ANALYZE runs the statement for its timings, inside a transaction that is rolled back. Explaining a DELETE deletes nothing.</p>
+</div>
+<div  id="Flex_4gwwQ-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
+<div  id="Flex_48WpT4-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_SZFyH1 intr_OqA281 ">
+<img  id="Imag_O3zSC2-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/explain-light.webp"alt="The query plan of the query, with costs, rows and actual timings">
 </img>
-<img  id="Imag_rthL32-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/phone-errors-dark.webp"alt="A crash&#39;s stack trace on a phone">
+<img  id="Imag_30sMW2-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/explain-dark.webp"alt="The query plan of the query, with costs, rows and actual timings">
+</img>
+</div>
+</div>
+</div>
+<div  id="Flex_hpdoC1-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 " data-flip="false">
+<div  id="Flex_NWpV22-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
+<p  id="Text_it7ww-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">Errors</p>
+<h2  id="Head_ZQdu44-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">The crashes your app reports, kept in your database
+</h2>
+<p  id="Text_UazmS2-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Your vapor app&#39;s backend writes its users&#39; crashes into your own Postgres with reverb-errors, and ryven reads them: grouped, with their stack traces, the request, and the events that led up to them. Resolve, ignore or delete; a resolved crash that comes back shows as regressed.</p>
+</div>
+<div  id="Flex_gPMfG3-gk" data-vp="" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
+<div  id="Flex_zM6WO3-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_YXmtf3 intr_4QezY1 ">
+<img  id="Imag_mkU3D3-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/errors-light.webp"alt="The errors page: a list of crash groups and the stack trace of the selected one">
+</img>
+<img  id="Imag_8MYZy1-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/errors-dark.webp"alt="The errors page: a list of crash groups and the stack trace of the selected one">
+</img>
+</div>
+</div>
+</div>
+<div  id="Flex_3E7mW4-gk" data-vp="" class="resp_hw5II1 lay_6mlhw2 pos_e8wtf3 mapa_97Gjh vis_gfo5Q1 ">
+<div  id="Flex_ZkNdS2-gk" data-vp="" class="lay_EV1UJ4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-beside="true">
+<p  id="Text_sLEgd1-gk" data-vp="" style="letter-spacing: 0.08em; text-transform: uppercase;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_MkMEI1 ">On a phone</p>
+<h2  id="Head_OSffx1-gk" data-vp="" style="font-size: clamp(28px, 5vw, 40px); line-height: 1.15; margin: 0;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_nbHbi3 ">Check on it from anywhere
+</h2>
+<p  id="Text_B77zW2-gk" data-vp="" style="line-height: 1.6;" class="lay_1I8dE4 pos_e8wtf3 mapa_CrkEb2 vis_ecJf31 ">Every page fits a phone: the charts stack, a tapped error opens on its own, and the editor&#39;s queries, history and schemas are a tap away. Behind Google sign-in, it is safe to reach from outside.</p>
+</div>
+<div  id="Flex_aCbMi3-gk" data-vp="" class="lay_XcFTD3 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shots="true">
+<div  id="Flex_DXCT23-gk" data-vp="" style="flex: 0 1 260px; min-width: 0;" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<div  id="Flex_X6YgJ1-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_jXKmu3 intr_eMu19 ">
+<img  id="Imag_FHaBx2-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/phone-overview-light.webp"alt="The overview on a phone">
+</img>
+<img  id="Imag_PQjS61-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/phone-overview-dark.webp"alt="The overview on a phone">
+</img>
+</div>
+</div>
+<div  id="Flex_oLQ4s2-gk" data-vp="" style="flex: 0 1 260px; min-width: 0;" class="lay_Owo7D2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
+<div  id="Flex_4FYde4-gk" data-vp="" class="lay_W59ox3 pos_e8wtf3 mapa_CrkEb2 vis_Zjca8 intr_G9JnK4 ">
+<img  id="Imag_wLj8U4-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="light" loading="lazy" src="/assets/shots/phone-errors-light.webp"alt="A crash&#39;s stack trace on a phone">
+</img>
+<img  id="Imag_GP8oT1-gk" data-vp="" style="height: auto;" class="lay_6qFfU1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 " data-shot="dark" loading="lazy" src="/assets/shots/phone-errors-dark.webp"alt="A crash&#39;s stack trace on a phone">
 </img>
 </div>
 </div>
@@ -512,7 +560,7 @@
 </div>
 <div  id="Flex_A4T8R2-gk" data-vp="" class="lay_R2kCO1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
 <div  id="Flex_0Y0C8-gk" data-vp="" style="flex: 1 1 auto; min-width: 0;" class="lay_eK77S4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
-<p  id="Text_1SZY5-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_1SsS74 ">curl -L https://github.com/vic-Rokx/ryven/releases/download/v0.1.1/ryven-v0.1.1-x86_64-linux-musl.tar.gz | tar -xz</p>
+<p  id="Text_1SZY5-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_1SsS74 ">curl -L https://github.com/vic-Rokx/ryven/releases/download/v0.2.0/ryven-v0.2.0-x86_64-linux-musl.tar.gz | tar -xz</p>
 </div>
 <button  id="CtxB_0dQm22-gk" data-vp="" class="lay_OG6Dc2 pos_e8wtf3 mapa_tFMrw3 vis_4VBoN1 intr_qohpd1 " aria-label="Copy this command">
 <i  id="Icon_QwgSS1-gk" data-vp="" class="bi bi-clipboard lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_RpCl33 ">
@@ -540,7 +588,7 @@
 </div>
 <div  id="Flex_c6TzZ2-gk" data-vp="" class="lay_R2kCO1 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
 <div  id="Flex_mB7xZ-gk" data-vp="" style="flex: 1 1 auto; min-width: 0;" class="lay_eK77S4 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
-<p  id="Text_Ni1601-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_1SsS74 ">curl -L https://github.com/vic-Rokx/ryven/releases/download/v0.1.1/ryven-v0.1.1-aarch64-macos.tar.gz | tar -xz</p>
+<p  id="Text_Ni1601-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_1SsS74 ">curl -L https://github.com/vic-Rokx/ryven/releases/download/v0.2.0/ryven-v0.2.0-aarch64-macos.tar.gz | tar -xz</p>
 </div>
 <button  id="CtxB_1vwOK2-gk" data-vp="" class="lay_OG6Dc2 pos_e8wtf3 mapa_tFMrw3 vis_4VBoN1 intr_qohpd1 " aria-label="Copy this command">
 <i  id="Icon_uCEG5-gk" data-vp="" class="bi bi-clipboard lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_RpCl33 ">
@@ -616,7 +664,7 @@
 </div>
 </div>
 <div  id="Flex_OC8NW-gk" data-vp="" class="lay_XonOy2 pos_e8wtf3 mapa_CrkEb2 vis_gfo5Q1 ">
-<a  id="Redi_AbaxI4-gk" data-vp="" class="lay_j5f7v3 pos_e8wtf3 mapa_G5kA64 vis_LhZZ53 intr_W1CvM2 " href="https://github.com/vic-Rokx/ryven/releases/tag/v0.1.1">
+<a  id="Redi_AbaxI4-gk" data-vp="" class="lay_j5f7v3 pos_e8wtf3 mapa_G5kA64 vis_LhZZ53 intr_W1CvM2 " href="https://github.com/vic-Rokx/ryven/releases/tag/v0.2.0">
 <i  id="Icon_dB0lS-gk" data-vp="" class="bi bi-download lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_RpCl33 ">
 </i>
 <p  id="Text_Uum6q-gk" data-vp="" class="lay_jXzf62 pos_e8wtf3 mapa_CrkEb2 vis_QrnhR ">All downloads</p>

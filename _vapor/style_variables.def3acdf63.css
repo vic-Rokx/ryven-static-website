@@ -46,7 +46,7 @@
 --text_muted:138,138,138;;
 --success:16,185,129;;
 --text_secondary:82,82,82;;
---accent:255,244,18;;
+--accent:255,87,0;;
 }
 [data-theme="dark"] {
 --border_color:39,39,42;;
@@ -57,7 +57,7 @@
 --secondary:255,255,255;;
 --font_family:Montserrat;
 --btn_color:255,255,21;;
---tint:255,244,18;;
+--tint:255,87,0;;
 --dark_tint:213,225,0;;
 --text_tint_color:194,254,10;;
 --alternate_tint:99,56,255;;
@@ -96,5 +96,5 @@
 --text_muted:138,138,138;;
 --success:16,185,129;;
 --text_secondary:161,161,170;;
---accent:255,244,18;;
+--accent:255,87,0;;
 }
